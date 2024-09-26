@@ -58,23 +58,32 @@ void timerDisplayUpdate() {
   int val;
   if (elapsedOneSecond == true) {
     val = secondsValTenX1;
-    val = val - 1;
 
-    if((secondsValTenX1 + secondsValTenX2  + minutesValTenX1 +minutesValTenX2) == 0 ){
+    if ((secondsValTenX1 + secondsValTenX2 + minutesValTenX1 + minutesValTenX2) == 0) {
       timerCounting = false;
       timerCountdownComplete = true;
     }
 
-    if (val >= secondsValTenX1MinVal) {
+    if (val > secondsValTenX1MinVal) {
       secondsValTenX1 = secondsValTenX1 - 1;
-    } else if (val < secondsValTenX1MinVal && secondsValTenX2 != secondsValTenX2MinVal) {
+    } else if (val == secondsValTenX1MinVal && secondsValTenX2 != secondsValTenX2MinVal) {
       secondsValTenX2 = secondsValTenX2 - 1;
       secondsValTenX1 = secondsValTenX1MaxVal;
-    } else if (val < secondsValTenX1MinVal && ((secondsValTenX2 - 1) == secondsValTenX2MinVal)) {
+    } else if (val == secondsValTenX1MinVal && secondsValTenX2  == secondsValTenX2MinVal) {
       secondsValTenX2 = secondsValTenX1MaxVal;
       secondsValTenX1 = secondsValTenX1MaxVal;
-      minutesValTenX1 = minutesValTenX1 - 1;
+      if (minutesValTenX1 == minutesValTenX1MinVal && minutesValTenX2 > minutesValTenX2MinVal) {
+        minutesValTenX2 = minutesValTenX2 - 1;
+        minutesValTenX1 = minutesValTenX1 - 1;
+      } else if(minutesValTenX1 == minutesValTenX1MinVal && minutesValTenX2 == minutesValTenX2MinVal){
+      minutesValTenX1 = minutesValTenX1MinVal;
+      minutesValTenX2 = minutesValTenX2;
+      }else if (minutesValTenX1 > minutesValTenX1MinVal) {
+        minutesValTenX1 = minutesValTenX1 - 1;
+      }
     }
+
+
     // printCountdown("end of if statement timerDisplay update");
     lcdPrintCurrentTimer();
     elapsedOneSecond = false;

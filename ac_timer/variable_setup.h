@@ -114,6 +114,7 @@ int secondsValTenX2MinVal = 0;
 int minutesValTenX1MaxVal = 9;
 int minutesValTenX1MinVal = 0;
 int minutesValTenX2MaxVal = 2;
+int minutesValTenX2MinVal = 0;
 
 int updateTimerValue;
 
